@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using V2Capstone.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using V2Capstone.Models;
 
 namespace V2Capstone
 {
@@ -39,7 +40,8 @@ namespace V2Capstone
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            services.AddDbContext<GroupChatContextModel>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
