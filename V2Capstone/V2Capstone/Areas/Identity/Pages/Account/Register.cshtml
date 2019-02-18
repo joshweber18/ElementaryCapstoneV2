@@ -4,34 +4,111 @@
     ViewData["Title"] = "Register";
 }
 
+
+<style>
+    h2 {
+        text-align: center;
+        padding-top: 100px;
+    }
+
+    div {
+        text-align: center;
+    }
+
+    .divider {
+        padding: 25px;
+    }
+
+    .form {
+        background-color: transparent;
+        padding: 50px;
+    }
+
+    .form-radio {
+        -webkit-appearance: none;
+        display: inline-block;
+        position: relative;
+        background-color: #f1f1f1;
+        color: #666;
+        top: 10px;
+        height: 30px;
+        width: 30px;
+        border: 0;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-right: 7px;
+        outline: none;
+    }
+
+        .form-radio:checked::before {
+            position: absolute;
+            font: 13px/1 'Open Sans', sans-serif;
+            left: 11px;
+            top: 7px;
+            content: '\02143';
+            transform: rotate(40deg);
+        }
+
+        .form-radio:hover {
+            background-color: #f7f7f7;
+        }
+
+        .form-radio:checked {
+            background-color: #f1f1f1;
+        }
+
+    label {
+        font: 300 16px/1.7 'Open Sans', sans-serif;
+        color: #666;
+        cursor: pointer;
+    }
+</style>
+
+
+
 <h2>@ViewData["Title"]</h2>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
+<div class="divider"></div>
+<div class="container-fluid" style="background-color:transparent;">
+    <div style="margin-top:20px;" class="row-fluid">
+        <div class="offset4 span4 well">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-default">Register</button>
-        </form>
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal form">
+                <fieldset>
+                    <div class="form-group">
+                        <label asp-for="Input.Email" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input asp-for="Input.Email" class="form-control" id="Input.Email" placeholder="Email">
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password" class="col-lg-2 control-label">Password</label>
+                        <div class="col-lg-10">
+                            <input asp-for=Input.Password class="form-control" id="Input.Password" placeholder="Password">
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.isTeacher"></label>
+                        <input asp-for=Input.isTeacher class="form-control form-radio">
+                        <span asp-validation-for="Input.isTeacher" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.isParent"></label>
+                        <input asp-for=Input.isParent class="form-control form-radio">
+                        <span asp-validation-for="Input.isParent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.isStudent"></label>
+                        <input asp-for=Input.isStudent class="form-control form-radio">
+                        <span asp-validation-for="Input.isStudent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}

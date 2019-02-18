@@ -1,0 +1,130 @@
+﻿
+@model V2Capstone.Models.AnalyticsViewModel
+
+@{
+    ViewData["Title"] = "CompleteGrade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    th {
+        padding: 0px;
+        border-width: 3px;
+        border-right: solid;
+        border-top: solid;
+        font-size: 20px;
+        text-align: center;
+        overflow: visible;
+        position: static !important;
+    }
+
+    tr {
+        border-left: solid;
+        border-color: black;
+        overflow: visible;
+        position: static !important;
+    }
+
+    td {
+        border-right: solid;
+        border-color: black;
+        text-align: center;
+        overflow: visible;
+        position: static !important;
+    }
+
+    table {
+        background-color: white;
+        border-top: solid;
+        border-bottom: solid;
+        overflow: visible;
+        position: static !important;
+    }
+
+    tbody {
+        border-bottom: solid;
+        border-color: black;
+        overflow: visible;
+        position: static !important;
+    }
+
+    div {
+        text-align: center;
+        padding: 1px;
+    }
+</style>
+<h2>@Model.student.FirstName's Grades</h2>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.student.ScienceGrade)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div>@Html.DisplayFor(model => model.student.ScienceGrade)%</div>
+                    </div>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" style="width: @Html.DisplayFor(model => model.student.ScienceGrade)%"></div>
+                    </div>
+                    <div class="panel-info">
+                        <div>Ranked @Html.DisplayFor(model => model.student.ScienceRank) in class</div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.student.MathGrade)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div> @Html.DisplayFor(model => model.student.MathGrade)%</div>
+                    </div>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" style="width: @Html.DisplayFor(model => model.student.MathGrade)%"></div>
+                    </div>
+                    <div class="panel-indo">
+                        <div>Ranked @Html.DisplayFor(model => model.student.MathRank) in class</div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.student.HistoryGrade)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div> @Html.DisplayFor(model => model.student.HistoryGrade)%</div>
+                    </div>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" style="width: @Html.DisplayFor(model => model.student.HistoryGrade)%"></div>
+                    </div>
+                    <div class="panel-info">
+                        <div>Ranked @Html.DisplayFor(model => model.student.HistoryRank) in class</div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.student.OverallGrade)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div>@Html.DisplayFor(model => model.student.OverallGrade)%</div>
+                    </div>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" style="width: @Html.DisplayFor(model => model.student.OverallGrade)%"></div>
+                    </div>
+                    <div class="panel-info">
+                        <div>Ranked @Html.DisplayFor(model => model.student.OverallRank) in class</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </thead>
+</table>
+
+

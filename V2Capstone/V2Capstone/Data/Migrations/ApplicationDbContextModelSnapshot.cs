@@ -141,11 +141,9 @@ namespace V2Capstone.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -176,11 +174,9 @@ namespace V2Capstone.Data.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
@@ -237,11 +233,11 @@ namespace V2Capstone.Data.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<int>("GradeLevel");
+                    b.Property<int?>("GradeLevel");
 
-                    b.Property<double>("HistoryGrade");
+                    b.Property<double?>("HistoryGrade");
 
-                    b.Property<int>("HistoryRank");
+                    b.Property<int?>("HistoryRank");
 
                     b.Property<string>("Id");
 
@@ -249,19 +245,19 @@ namespace V2Capstone.Data.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<double>("MathGrade");
+                    b.Property<double?>("MathGrade");
 
-                    b.Property<int>("MathRank");
+                    b.Property<int?>("MathRank");
 
-                    b.Property<double>("OverallGrade");
+                    b.Property<double?>("OverallGrade");
 
-                    b.Property<int>("OverallRank");
+                    b.Property<int?>("OverallRank");
 
                     b.Property<int>("ParentId");
 
-                    b.Property<double>("ScienceGrade");
+                    b.Property<double?>("ScienceGrade");
 
-                    b.Property<int>("ScienceRank");
+                    b.Property<int?>("ScienceRank");
 
                     b.Property<int>("TeacherId");
 

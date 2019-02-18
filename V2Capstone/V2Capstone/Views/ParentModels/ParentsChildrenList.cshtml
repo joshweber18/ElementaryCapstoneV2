@@ -1,0 +1,45 @@
+﻿
+@model V2Capstone.Models.AnalyticsViewModel
+
+@{
+    ViewData["Title"] = "ParentsChildrenList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your Children</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.student.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.student.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.student.GradeLevel)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GradeLevel)
+                </td>
+                <td>
+                    @Html.ActionLink("Select", "CompleteGrade", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,103 @@
+﻿@model V2Capstone.Models.StudentModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>StudentModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StudentId" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScienceGrade" class="control-label"></label>
+                <input asp-for="ScienceGrade" class="form-control" />
+                <span asp-validation-for="ScienceGrade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MathGrade" class="control-label"></label>
+                <input asp-for="MathGrade" class="form-control" />
+                <span asp-validation-for="MathGrade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HistoryGrade" class="control-label"></label>
+                <input asp-for="HistoryGrade" class="form-control" />
+                <span asp-validation-for="HistoryGrade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MathRank" class="control-label"></label>
+                <input asp-for="MathRank" class="form-control" />
+                <span asp-validation-for="MathRank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScienceRank" class="control-label"></label>
+                <input asp-for="ScienceRank" class="form-control" />
+                <span asp-validation-for="ScienceRank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HistoryRank" class="control-label"></label>
+                <input asp-for="HistoryRank" class="form-control" />
+                <span asp-validation-for="HistoryRank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OverallRank" class="control-label"></label>
+                <input asp-for="OverallRank" class="form-control" />
+                <span asp-validation-for="OverallRank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OverallGrade" class="control-label"></label>
+                <input asp-for="OverallGrade" class="form-control" />
+                <span asp-validation-for="OverallGrade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GradeLevel" class="control-label"></label>
+                <input asp-for="GradeLevel" class="form-control" />
+                <span asp-validation-for="GradeLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsNotified" /> @Html.DisplayNameFor(model => model.IsNotified)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeacherId" class="control-label"></label>
+                <select asp-for="TeacherId" class="form-control" asp-items="ViewBag.TeacherId"></select>
+                <span asp-validation-for="TeacherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParentId" class="control-label"></label>
+                <select asp-for="ParentId" class="form-control" asp-items="ViewBag.ParentId"></select>
+                <span asp-validation-for="ParentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <select asp-for="Id" class="form-control" asp-items="ViewBag.Id"></select>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

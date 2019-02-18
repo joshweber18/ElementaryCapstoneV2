@@ -1,0 +1,74 @@
+﻿@model V2Capstone.Models.AnalyticsViewModel
+
+@{
+    ViewData["Title"] = "GetStudents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<form asp-action="GetParents">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.student.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.student.LastName)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            @for (int i = 0; i < Model.Students.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.Raw(Model.Students[i].FirstName)
+                    </td>
+                    <td>
+                        @Html.Raw(Model.Students[i].LastName)
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input asp-for="@Model.Students[i].IsNotified" class="form-control" />
+                            <span asp-validation-for="@Model.Students[i].IsNotified" class="form-check"></span>
+                            @Html.HiddenFor(m => m.Students[i].FirstName)
+                            @Html.HiddenFor(m => m.Students[i].GradeLevel)
+                            @Html.HiddenFor(m => m.Students[i].HistoryGrade)
+                            @Html.HiddenFor(m => m.Students[i].HistoryRank)
+                            @Html.HiddenFor(m => m.Students[i].Id)
+                            @Html.HiddenFor(m => m.Students[i].LastName)
+                            @Html.HiddenFor(m => m.Students[i].MathGrade)
+                            @Html.HiddenFor(m => m.Students[i].MathRank)
+                            @Html.HiddenFor(m => m.Students[i].OverallGrade)
+                            @Html.HiddenFor(m => m.Students[i].OverallRank)
+                            @Html.HiddenFor(m => m.Students[i].Parent)
+                            @Html.HiddenFor(m => m.Students[i].ParentId)
+                            @Html.HiddenFor(m => m.Students[i].ScienceGrade)
+                            @Html.HiddenFor(m => m.Students[i].ScienceRank)
+                            @Html.HiddenFor(m => m.Students[i].StudentId)
+                            @Html.HiddenFor(m => m.Students[i].Teacher)
+                            @Html.HiddenFor(m => m.Students[i].TeacherId)
+                            @Html.HiddenFor(m => m.Students[i].User)
+                            @Html.HiddenFor(m => m.Students[i].IsNotified)
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <center>
+        <div class="form-group">
+            <input style="width:30%" type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </center>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

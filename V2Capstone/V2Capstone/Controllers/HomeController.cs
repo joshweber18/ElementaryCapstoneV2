@@ -15,6 +15,26 @@ namespace V2Capstone.Controllers
             return View();
         }
 
+        public IActionResult DirectUser()
+        {
+            if (User.IsInRole("Teacher".Trim()))
+            {
+                return RedirectToAction("Index", "TeacherModels");
+            }
+            if (User.IsInRole("Parent".Trim()))
+            {
+                return RedirectToAction("Index", "ParentModels");
+            }
+            if (User.IsInRole("Student".Trim()))
+            {
+                return RedirectToAction("Index", "StudentModels");
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

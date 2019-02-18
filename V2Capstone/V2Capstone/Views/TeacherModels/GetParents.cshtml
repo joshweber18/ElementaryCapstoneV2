@@ -1,0 +1,53 @@
+﻿@model V2Capstone.Models.AnalyticsViewModel
+
+@{
+    ViewData["Title"] = "GetParents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+<form asp-action="ChosenParents">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.parent.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.parent.LastName)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Parents.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.Raw(Model.Parents[i].FirstName)
+                    </td>
+                    <td>
+                        @Html.Raw(Model.Parents[i].LastName)
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input asp-for="@Model.Parents[i].IsNotified" class="form-control" />
+                            <span asp-validation-for="@Model.Parents[i].IsNotified" class="text-danger"></span>
+                            @Html.HiddenFor(m => m.Parents[i].FirstName)
+                            @Html.HiddenFor(m => m.Parents[i].LastName)
+                            @Html.HiddenFor(m => m.Parents[i].IsNotified)
+                            @Html.HiddenFor(m => m.Parents[i].Id)
+                            @Html.HiddenFor(m => m.Parents[i].ParentId)
+                            @Html.HiddenFor(m => m.Parents[i].User)
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <center>
+        <div class="form-group">
+            <input style="width:30%" type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </center>
+</form>
+

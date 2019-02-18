@@ -1,0 +1,87 @@
+﻿@using V2Capstone.Models
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    </environment>
+
+    <link rel="stylesheet" type="text/css" href="css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="css/dx.light.css" />
+
+    <link href="~/lib/devextreme/css/dx.common.css" rel="stylesheet" />
+    <link href="~/lib/devextreme/css/dx.light.css" rel="stylesheet" />
+    <script src="~/lib/devextreme/js/dx.all.js"></script>
+    <script src="~/lib/devextreme-aspnet-data/js/dx.aspnet.data.js"></script>
+    <script src="~/lib/devextreme/js/dx.aspnet.mvc.js"></script>
+
+    <script src="~/js/devextreme/cldr/unresolved.js"></script>
+
+    <script src="~/js/devextreme/jquery.js"></script>
+    <script src="~/js/devextreme/bootstrap.js"></script>
+
+    <link href="~/css/devextreme/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/devextreme/dx.common.css" rel="stylesheet" />
+    <link href="~/css/devextreme/dx.light.css" rel="stylesheet" />
+
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/vectormap-data/world.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.mvc.js"></script>
+
+    <script src="~/js/devextreme/jszip.js"></script>
+
+</head>
+<body>
+    <div>
+
+        @(Html.DevExtreme().DataGrid<V2Capstone.Models.StudentModel>()
+                    .ShowBorders(true)
+                    .DataSource(ds => ds.Mvc().Controller("StudentModels").LoadAction("Get").Key("studentId").UpdateAction("Save"))
+                    .Columns(columns =>
+                    {
+                        columns.Add().DataField("firstName");
+                        columns.Add().DataField("lastName");
+                        columns.Add().DataField("mathGrade");
+                        columns.Add().DataField("historyGrade");
+                        columns.Add().DataField("scienceGrade");
+                    })
+
+                        .Paging(p => p.PageSize(10))
+                        .FilterRow(f => f.Visible(true))
+                        .HeaderFilter(f => f.Visible(true))
+                        .GroupPanel(p => p.Visible(true))
+                        .Grouping(g => g.AutoExpandAll(false))
+                        .RemoteOperations(true)
+
+                        .Editing(editing =>
+                        {
+                            editing.Mode(GridEditMode.Batch);
+                            editing.AllowUpdating(true);
+                        })
+        )
+
+    </div>
+</body>
+</html>
+
+
+

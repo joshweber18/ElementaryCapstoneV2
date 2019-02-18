@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "jquery": "~3.1",
+    "devextreme": "~17.2",
+    "devextreme-aspnet-data": "~1"
+  }
+}
