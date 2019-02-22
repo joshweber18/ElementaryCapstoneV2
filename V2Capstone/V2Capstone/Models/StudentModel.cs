@@ -56,6 +56,8 @@ namespace V2Capstone.Models
 
         public bool IsNotified { get; set; }
 
+        public bool UpdatedGrade { get; set; }
+
         [ForeignKey("Teacher")]
         public int TeacherId { get; set; }
         public TeacherModel Teacher { get; set; }

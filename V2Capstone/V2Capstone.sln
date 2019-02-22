@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V2Capstone", "V2Capstone\V2Capstone.csproj", "{F0A2F085-60F5-4603-981E-6627B21E10FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "V2Capstone", "V2Capstone\V2Capstone.csproj", "{F0A2F085-60F5-4603-981E-6627B21E10FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

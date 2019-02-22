@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using V2Capstone.Data;
 using V2Capstone.Models;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 
 namespace V2Capstone.Controllers
 {
@@ -28,6 +29,18 @@ namespace V2Capstone.Controllers
             string parentId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             viewModel.parent = _context.Parent.Where(p => p.Id == parentId).Single();
             var applicationDbContext = _context.Parent.Include(p => p.User);
+
+            //var parent = _context.Parent.Where(p => p.Id == parentId).FirstOrDefault();
+            //viewModel.Students = _context.Student.Where(s => s.ParentId == parent.ParentId).ToList();
+
+            //foreach (var student in viewModel.Students)
+            //{
+            //    if (student.UpdatedGrade == true)
+            //    {
+                    
+            //    }
+            //}
+
             return View(viewModel);
         }
 

@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -63,38 +64,58 @@
                 background-color: #444;
             }
 
+        .logoutbutton {
+            background-color: transparent;
+            color: black;
+            display: inline-block;
+            position: relative;
+            padding: 16px 20px;
+            cursor: pointer;
+            opacity: 0.8;
+            margin: 0 auto;
+            width: 14.615861214%;
+            position: absolute;
+            right: 16px;
+        }
+        
         #main {
             transition: margin-left .5s;
             padding: 16px;
         }
     </style>
 </head>
-<body>
+<body style="background-color: #E5E4E2;">
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <ul class="nav navbar-nav">
             <li><a asp-area="" asp-controller="Chat" asp-action="Index" style="color:white;">Chat</a></li>
             <li><a asp-area="" asp-controller="GradeGrid" asp-action="Index" style="color:white;">Grades</a></li>
-            <li><a asp-area="" asp-controller="SendEnvelope" asp-action="OnPostAsync" style="color:white;">Send Document</a></li>
+            <li><a asp-area="Identity" asp-page="/SendEnvelope" style="color:white;">Send Document</a></li>
             <li><a asp-area="" asp-controller="TeacherModels" asp-action="ChosenParents" style="color:white;">Send Alert</a></li>
         </ul>
     </div>
+
+    <form method="get" class="logoutbutton">
+        <div class="row">
+            <button type="submit" class="open-button" asp-area="" asp-action="Index" asp-controller="Home">Logout</button>
+        </div>
+    </form>
 
     <div id="main">
         <button class="openbtn" onclick="openNav()">☰</button>
     </div>
 
     <script>
-            function openNav() {
-                document.getElementById("mySidebar").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            }
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
 
-            function closeNav() {
-                document.getElementById("mySidebar").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-            }
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
     </script>
 
 </body>

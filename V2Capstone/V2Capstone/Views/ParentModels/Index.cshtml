@@ -21,6 +21,19 @@
             text-align: center;
         }
 
+        .alertBox {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            width: 500px;
+            margin-left: -250px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 4px 8px;
+        }
+
         .sidebar {
             height: 100%;
             width: 0;
@@ -34,28 +47,28 @@
             padding-top: 60px;
         }
 
-            .sidebar a {
-                padding: 8px 8px 8px 32px;
-                text-decoration: none;
-                font-size: 25px;
-                color: #818181;
-                display: block;
-                transition: 0.3s;
-            }
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
 
-                .sidebar a:hover {
-                    color: #f1f1f1;
-                }
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
 
 
-            .sidebar .closebtn {
-                position: absolute;
-                top: 0;
-                right: 25px;
-                font-size: 36px;
-                margin-left: 50px;
-                color: white;
-            }
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: white;
+        }
 
         .openbtn {
             font-size: 20px;
@@ -66,9 +79,47 @@
             border: none;
         }
 
-            .openbtn:hover {
-                background-color: #444;
-            }
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        .topnav {
+            background-color: #2B3856;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .topnav a {
+            color: #f2f2f2;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 25px;
+        }
+
+        .topnav a.active {
+            color: white;
+            text-align: center;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .logoutbutton {
+            
+            background-color: transparent;
+            color: black;
+            display: inline-block;
+            position: relative;
+            padding: 16px 20px;
+            cursor: pointer;
+            opacity: 0.8;
+            margin: 0 auto;
+            width: 14.615861214%;
+            position: absolute;
+            right: 16px;
+        }
 
         #main {
             transition: margin-left .5s;
@@ -76,8 +127,18 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color: #E5E4E2;">
+    @*<div class="topnav">
+            <a class="active"  asp-area="" asp-controller="Chat" asp-action="Index" style="color:white;">Chat</a>
+            <a class="active" asp-area="" asp-controller="ParentModels" asp-action="ParentsChildrenList" style="color:white;">Your Kids</a>
+        </div>*@
     <h2 class="h2"> Welcome @Html.DisplayFor(model => model.parent.FirstName) @Html.DisplayFor(model => model.parent.LastName)!</h2>
+
+    <form method="get" class="logoutbutton">
+        <div class="row">
+            <button type="submit" class="open-button" asp-area="" asp-action="Index" asp-controller="Home">Logout</button>
+        </div>
+    </form>
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>

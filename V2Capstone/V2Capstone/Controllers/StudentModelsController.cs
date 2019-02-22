@@ -33,6 +33,7 @@ namespace V2Capstone.Controllers
         public IActionResult Save(int key, string values)
         {
             var student = _context.Student.First(a => a.StudentId == key);
+            //student.UpdatedGrade = true;
             JsonConvert.PopulateObject(values, student);
 
             if (!TryValidateModel(student))
