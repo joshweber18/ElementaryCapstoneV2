@@ -4,6 +4,7 @@
 }
 
 <script src="~/js/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
+<script src="~/js/Grid.js" asp-append-version="true"></script>
 <link href="icons/style.css" rel="stylesheet" type="text/css">
 
 <!DOCTYPE html>
@@ -77,10 +78,23 @@
             position: absolute;
             right: 16px;
         }
-        
+
         #main {
             transition: margin-left .5s;
             padding: 16px;
+        }
+
+        ul.nav.nav-tabs {
+            margin: 10px 0px;
+        }
+
+        ul.nav.nav-tabs li:not(.active) a {
+            background-color: #eeeeee;
+            color: grey;
+        }
+
+        ul.nav.nav-tabs li.active a {
+            border-top: 3px solid #16a765;
         }
     </style>
 </head>
@@ -93,6 +107,7 @@
             <li><a asp-area="" asp-controller="GradeGrid" asp-action="Index" style="color:white;">Grades</a></li>
             <li><a asp-area="Identity" asp-page="/SendEnvelope" style="color:white;">Send Document</a></li>
             <li><a asp-area="" asp-controller="TeacherModels" asp-action="ChosenParents" style="color:white;">Send Alert</a></li>
+            <li><a asp-area="" asp-controller="CustomGrid" asp-action="Index" style="color:white;">My Grid</a></li>
         </ul>
     </div>
 
@@ -136,176 +151,212 @@
     </div>
 </div>
 
+
+
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#firstTab">View All</a></li>
+    <li><a data-toggle="tab" href="#secondTab">Add New</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="firstTab" class="tab-pane fade-in active">@Html.ActionLink("Students", "GetTeacherStudents")</div>
+    <div id="secondTab" class="tab-pane fade-in">tab 2 content</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 
-        var nav = new DayPilot.Navigator("nav");
-        nav.showMonths = 3;
-        nav.skipMonths = 3;
-        nav.selectMode = "month";
-        nav.onTimeRangeSelected = function (args) {
-            dp.startDate = args.day;
-            dp.update();
-            dp.events.load("/api/events");
-        };
-        nav.init();
-
-
-        var dp = new DayPilot.Month("dp");
-        dp.onTimeRangeSelected = function (args) {
-            DayPilot.Modal.prompt("Create a new event:", "Event").then(function (modal) {
-                var dp = args.control;
-                dp.clearSelection();
-                if (!modal.result) {
-                    return;
-                }
-                var params = {
-                    start: args.start.toString(),
-                    end: args.end.toString(),
-                    text: modal.result,
-                    resource: args.resource
-                };
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/events',
-                    data: JSON.stringify(params),
-                    success: function (data) {
-                        dp.events.add(new DayPilot.Event(data));
-                        dp.message("Event created");
-                    },
-                    contentType: "application/json",
-                    dataType: 'json'
-                });
-            });
-        };
-        dp.onEventMove = function (args) {
-            var params = {
-                id: args.e.id(),
-                start: args.newStart.toString(),
-                end: args.newEnd.toString()
-            };
-            $.ajax({
-                type: 'PUT',
-                url: '/api/events/' + args.e.id() + "/move",
-                data: JSON.stringify(params),
-                success: function (data) {
-                    dp.message("Event moved");
-                },
-                contentType: "application/json",
-                dataType: 'json'
-            });
-        };
-        dp.onEventResize = function (args) {
-            var params = {
-                id: args.e.id(),
-                start: args.newStart.toString(),
-                end: args.newEnd.toString()
-            };
-            $.ajax({
-                type: 'PUT',
-                url: '/api/events/' + args.e.id() + "/move",
-                data: JSON.stringify(params),
-                success: function (data) {
-                    dp.message("Event resized");
-                },
-                contentType: "application/json",
-                dataType: 'json'
-            });
-        };
-        dp.onBeforeEventRender = function (args) {
-            args.data.backColor = args.data.color;
-            args.data.areas = [
-                { top: 3, right: 3, bottom: 3, icon: "icon-triangle-down", visibility: "Hover", action: "ContextMenu", style: "font-size: 12px; background-color: rgba(255, 255, 255, .5); border: 1px solid #aaa; padding: 3px; cursor:pointer;" }
-            ];
-        };
-        dp.contextMenu = new DayPilot.Menu({
-            items: [
-                {
-                    text: "Delete",
-                    onClick: function (args) {
-                        var e = args.source;
-                        $.ajax({
-                            type: 'DELETE',
-                            url: '/api/events/' + e.id(),
-                            success: function (data) {
-                                dp.events.remove(e);
-                                dp.message("Event deleted");
-                            },
-                            contentType: "application/json",
-                            dataType: 'json'
-                        });
-                    }
-                },
-                {
-                    text: "-"
-                },
-                {
-                    text: "Blue",
-                    icon: "icon icon-blue",
-                    color: "#a2c4c9",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-                {
-                    text: "Green",
-                    icon: "icon icon-green",
-                    color: "#b6d7a8",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-                {
-                    text: "Yellow",
-                    icon: "icon icon-yellow",
-                    color: "#ffe599",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-                {
-                    text: "Red",
-                    icon: "icon icon-red",
-                    color: "#ea9999",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-                {
-                    text: "Auto",
-                    color: "auto",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-            ]
-        });
-        dp.init();
-
+    var nav = new DayPilot.Navigator("nav");
+    nav.showMonths = 3;
+    nav.skipMonths = 3;
+    nav.selectMode = "month";
+    nav.onTimeRangeSelected = function (args) {
+        dp.startDate = args.day;
+        dp.update();
         dp.events.load("/api/events");
+    };
+    nav.init();
 
 
-        function updateColor(e, color) {
+    var dp = new DayPilot.Month("dp");
+    dp.onTimeRangeSelected = function (args) {
+        DayPilot.Modal.prompt("Create a new event:", "Event").then(function (modal) {
+            var dp = args.control;
+            dp.clearSelection();
+            if (!modal.result) {
+                return;
+            }
             var params = {
-                color: color
+                start: args.start.toString(),
+                end: args.end.toString(),
+                text: modal.result,
+                resource: args.resource
             };
             $.ajax({
-                type: 'PUT',
-                url: '/api/events/' + e.id() + '/color',
+                type: 'POST',
+                url: '/api/events',
                 data: JSON.stringify(params),
                 success: function (data) {
-                    e.data.color = color;
-                    dp.events.update(e);
-                    dp.message("Color updated");
+                    dp.events.add(new DayPilot.Event(data));
+                    dp.message("Event created");
                 },
                 contentType: "application/json",
                 dataType: 'json'
             });
-        }
-
-        $(document).ready(function () {
-
-            $("#previous").click(function () {
-                nav.select(nav.selectionDay.addMonths(-1));
-            });
-
-            $("#today").click(function () {
-                nav.select(DayPilot.Date.today());
-            });
-
-            $("#next").click(function () {
-                nav.select(nav.selectionDay.addMonths(1));
-            });
-
         });
+    };
+    dp.onEventMove = function (args) {
+        var params = {
+            id: args.e.id(),
+            start: args.newStart.toString(),
+            end: args.newEnd.toString()
+        };
+        $.ajax({
+            type: 'PUT',
+            url: '/api/events/' + args.e.id() + "/move",
+            data: JSON.stringify(params),
+            success: function (data) {
+                dp.message("Event moved");
+            },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    };
+    dp.onEventResize = function (args) {
+        var params = {
+            id: args.e.id(),
+            start: args.newStart.toString(),
+            end: args.newEnd.toString()
+        };
+        $.ajax({
+            type: 'PUT',
+            url: '/api/events/' + args.e.id() + "/move",
+            data: JSON.stringify(params),
+            success: function (data) {
+                dp.message("Event resized");
+            },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    };
+    dp.onBeforeEventRender = function (args) {
+        args.data.backColor = args.data.color;
+        args.data.areas = [
+            { top: 3, right: 3, bottom: 3, icon: "icon-triangle-down", visibility: "Hover", action: "ContextMenu", style: "font-size: 12px; background-color: rgba(255, 255, 255, .5); border: 1px solid #aaa; padding: 3px; cursor:pointer;" }
+        ];
+    };
+    dp.contextMenu = new DayPilot.Menu({
+        items: [
+            {
+                text: "Delete",
+                onClick: function (args) {
+                    var e = args.source;
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/api/events/' + e.id(),
+                        success: function (data) {
+                            dp.events.remove(e);
+                            dp.message("Event deleted");
+                        },
+                        contentType: "application/json",
+                        dataType: 'json'
+                    });
+                }
+            },
+            {
+                text: "-"
+            },
+            {
+                text: "Blue",
+                icon: "icon icon-blue",
+                color: "#a2c4c9",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Green",
+                icon: "icon icon-green",
+                color: "#b6d7a8",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Yellow",
+                icon: "icon icon-yellow",
+                color: "#ffe599",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Red",
+                icon: "icon icon-red",
+                color: "#ea9999",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Auto",
+                color: "auto",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+        ]
+    });
+    dp.init();
+
+    dp.events.load("/api/events");
+
+
+    function updateColor(e, color) {
+        var params = {
+            color: color
+        };
+        $.ajax({
+            type: 'PUT',
+            url: '/api/events/' + e.id() + '/color',
+            data: JSON.stringify(params),
+            success: function (data) {
+                e.data.color = color;
+                dp.events.update(e);
+                dp.message("Color updated");
+            },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    }
+
+    $(document).ready(function () {
+
+        $("#previous").click(function () {
+            nav.select(nav.selectionDay.addMonths(-1));
+        });
+
+        $("#today").click(function () {
+            nav.select(DayPilot.Date.today());
+        });
+
+        $("#next").click(function () {
+            nav.select(nav.selectionDay.addMonths(1));
+        });
+
+    });
 
 </script>

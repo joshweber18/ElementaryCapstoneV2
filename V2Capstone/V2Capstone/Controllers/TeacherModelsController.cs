@@ -159,18 +159,15 @@ namespace V2Capstone.Controllers
             return _context.Teacher.Any(e => e.TeacherId == id);
         }
 
-        //public IActionResult GetTeacherStudents()
-        //{
-        //    AnalyticsViewModel viewModel = new AnalyticsViewModel();
-        //    string teacherId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    var teacher = _context.Teacher.Where(t => t.Id == teacherId).FirstOrDefault();
-        //    viewModel.Students = _context.Student.Where(s => s.TeacherId == teacher.TeacherId).ToList();
-        //    viewModel.Students = viewModel.Students.Where(s => s.IsNotified == !false).ToList();
-        //    viewModel.Parents = _context.Parent.Where(p => viewModel.Students.Any(s => s.ParentId == p.ParentId)).ToList();
-        //    viewModel.Parents = viewModel.Parents.Where(p => p.IsNotified == !false).ToList();
+        public IActionResult GetTeacherStudents()
+        {
+            AnalyticsViewModel viewModel = new AnalyticsViewModel();
+            string teacherId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var teacher = _context.Teacher.Where(t => t.Id == teacherId).FirstOrDefault();
+            viewModel.Students = _context.Student.Where(s => s.TeacherId == teacher.TeacherId).ToList();
 
-        //    return RedirectToAction("GetParents", viewModel);
-        //}
+            return View(viewModel);
+        }
 
         //public IActionResult GetParents(AnalyticsViewModel viewModel)
         //{
