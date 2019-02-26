@@ -169,6 +169,11 @@ namespace V2Capstone.Controllers
             return View(viewModel);
         }
 
+        public string TellMeDate()
+        {
+            return DateTime.Today.ToString();
+        }
+
         //public IActionResult GetParents(AnalyticsViewModel viewModel)
         //{
         //    viewModel.Students = viewModel.Students.Where(s => s.IsNotified == !false).ToList();

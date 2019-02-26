@@ -4,7 +4,8 @@
 }
 
 <script src="~/js/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
-<script src="~/js/Grid.js" asp-append-version="true"></script>
+@*<script src="~/js/Grid.js" asp-append-version="true"></script>*@
+
 <link href="icons/style.css" rel="stylesheet" type="text/css">
 
 <!DOCTYPE html>
@@ -88,14 +89,14 @@
             margin: 10px 0px;
         }
 
-        ul.nav.nav-tabs li:not(.active) a {
-            background-color: #eeeeee;
-            color: grey;
-        }
+            ul.nav.nav-tabs li:not(.active) a {
+                background-color: #eeeeee;
+                color: grey;
+            }
 
-        ul.nav.nav-tabs li.active a {
-            border-top: 3px solid #16a765;
-        }
+            ul.nav.nav-tabs li.active a {
+                border-top: 3px solid #16a765;
+            }
     </style>
 </head>
 <body style="background-color: #E5E4E2;">
@@ -103,7 +104,7 @@
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <ul class="nav navbar-nav">
-            <li><a asp-area="" asp-controller="Chat" asp-action="Index" style="color:white;">Chat</a></li>
+            <li><a asp-area="" asp-controller="Chat" asp-action="Index" id="nav-button" style="color:white;">Chat</a></li>
             <li><a asp-area="" asp-controller="GradeGrid" asp-action="Index" style="color:white;">Grades</a></li>
             <li><a asp-area="Identity" asp-page="/SendEnvelope" style="color:white;">Send Document</a></li>
             <li><a asp-area="" asp-controller="TeacherModels" asp-action="ChosenParents" style="color:white;">Send Alert</a></li>
@@ -133,6 +134,10 @@
         }
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="~/js/Grid.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/Grid.js"></script>
+
 </body>
 </html>
 
@@ -155,39 +160,27 @@
 
 
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#firstTab">View All</a></li>
+    <li class="active"><a data-toggle="tab" href="#getstudentdata">View All</a></li>
     <li><a data-toggle="tab" href="#secondTab">Add New</a></li>
 </ul>
 
 <div class="tab-content">
-    <div id="firstTab" class="tab-pane fade-in active">@Html.ActionLink("Students", "GetTeacherStudents")</div>
-    <div id="secondTab" class="tab-pane fade-in">tab 2 content</div>
+    <div id="getstudentdata" class="tab-pane fade-in active"></div>
+    <div id="secondTab" class="tab-pane fade-in"></div>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script type="text/jscript">
+    var url = "/TeacherModels/GetTeacherStudents";
+    $.get(url, null, function (data) {
+        $("#getstudentdata").html(data);
+    });
+</script>
 
 
 
 <script>
+
 
     var nav = new DayPilot.Navigator("nav");
     nav.showMonths = 3;
