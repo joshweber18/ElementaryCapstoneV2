@@ -169,9 +169,14 @@ namespace V2Capstone.Controllers
             return View(viewModel);
         }
 
-        public string TellMeDate()
+        public IActionResult GetStudents()
         {
-            return DateTime.Today.ToString();
+            AnalyticsViewModel viewModel = new AnalyticsViewModel();
+            string teacherId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var teacher = _context.Teacher.Where(t => t.Id == teacherId).FirstOrDefault();
+            viewModel.Students = _context.Student.Where(s => s.TeacherId == teacher.TeacherId).ToList();
+
+            return View(viewModel);
         }
 
         //public IActionResult GetParents(AnalyticsViewModel viewModel)

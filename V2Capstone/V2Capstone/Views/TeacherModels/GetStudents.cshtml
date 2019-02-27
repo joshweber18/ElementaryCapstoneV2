@@ -1,0 +1,70 @@
+﻿@model V2Capstone.Models.AnalyticsViewModel
+
+@{
+    ViewData["Title"] = "GetStudents";
+}
+
+<table class="table table-striped table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.student.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.student.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.student.HistoryGrade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.student.ScienceGrade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.student.MathGrade)
+        </th>
+    </tr>
+
+    @for (int i = 0; i < Model.Students.Count; i++)
+    {
+    <tr>
+        <td>
+            @Html.Raw(Model.Students[i].FirstName)
+        </td>
+        <td>
+            @Html.Raw(Model.Students[i].LastName)
+        </td>
+        <td>
+            @Html.Raw(Model.Students[i].HistoryGrade)
+        </td>
+        <td>
+            @Html.Raw(Model.Students[i].ScienceGrade)
+        </td>
+        <td>
+            @Html.Raw(Model.Students[i].MathGrade)
+        </td>
+        <td>
+            <div class="form-group">
+                @Html.HiddenFor(m => m.Students[i].FirstName)
+                @Html.HiddenFor(m => m.Students[i].GradeLevel)
+                @Html.HiddenFor(m => m.Students[i].HistoryGrade)
+                @Html.HiddenFor(m => m.Students[i].HistoryRank)
+                @Html.HiddenFor(m => m.Students[i].Id)
+                @Html.HiddenFor(m => m.Students[i].LastName)
+                @Html.HiddenFor(m => m.Students[i].MathGrade)
+                @Html.HiddenFor(m => m.Students[i].MathRank)
+                @Html.HiddenFor(m => m.Students[i].OverallGrade)
+                @Html.HiddenFor(m => m.Students[i].OverallRank)
+                @Html.HiddenFor(m => m.Students[i].Parent)
+                @Html.HiddenFor(m => m.Students[i].ParentId)
+                @Html.HiddenFor(m => m.Students[i].ScienceGrade)
+                @Html.HiddenFor(m => m.Students[i].ScienceRank)
+                @Html.HiddenFor(m => m.Students[i].StudentId)
+                @Html.HiddenFor(m => m.Students[i].Teacher)
+                @Html.HiddenFor(m => m.Students[i].TeacherId)
+                @Html.HiddenFor(m => m.Students[i].User)
+                @Html.HiddenFor(m => m.Students[i].IsNotified)
+            </div>
+        </td>
+    </tr>
+    }
+
+</table>
