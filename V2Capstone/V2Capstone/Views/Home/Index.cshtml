@@ -4,7 +4,7 @@
 }
 
 <!DOCTYPE html>
-<html>
+<html class="fullWidth">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -18,8 +18,8 @@
 
         /* Button used to open the contact form */
         .open-button {
-            background-color: transparent;
-            color: black;
+            background-color: black;
+            color: white;
             display: inline-block;
             position: relative;
             padding: 16px 20px;
@@ -30,15 +30,9 @@
             margin: 0 auto;
             width: 14.615861214%;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font-size: medium;
+            font-size: 20px;
+            
         }
-
-        /*.row {
-            padding-top: 500px;
-            text-align: center;
-            margin-left: -20px;
-            margin-right: -20px;
-        }*/
 
         .divider {
             width: 100px;
@@ -51,7 +45,7 @@
             margin-left: auto;
             margin-right: auto;
             max-width: initial;
-            height: 260px;
+            height: auto;
             background-image: url("http://images4.fanpop.com/image/photos/22100000/Colored-pencils-pencils-22186680-1600-1200.jpg");
             width: auto;
             background-size: cover;
@@ -73,7 +67,7 @@
 
         .left {
             left: 0;
-            background-color: #659EC7;
+            
         }
 
         .right {
@@ -82,10 +76,10 @@
         }
 
         .mystudent {
-            text-align: center;
+            padding-left: 220px;
             font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-            padding-top: 250px;
-            font-size: 50px;
+            padding-top: 50px;
+            font-size: 80px;
         }
 
         .btn {
@@ -97,18 +91,17 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 2px;
+            background-color: black;
             color: white;
             font-size: 14px;
             text-align: center;
         }
 
-
-
     </style>
 </head>
 <body>
-    <div class="row fullWidth">
-
+    <div class="col-xs-4">
+        <p class="mystudent">myStudent</p>
     </div>
 
     @*<div class="split left">
@@ -120,17 +113,15 @@
                 An easy accessible way to view what's going on in your classroom today.
             </p>
         </div>
-    </div>
+    </div>*@
 
-    <div class="split right">
         <form method="get">
-            <div class="row fullWidth">
+            <div style="margin-left: 200px; padding-top:170px;">
                 <button type="submit" class="open-button" asp-area="Identity" asp-page="/Account/Register">Register</button>
                 <div class="divider"></div>
                 <button type="submit" class="open-button" asp-area="Identity" asp-page="/Account/Login">Login</button>
             </div>
         </form>
-    </div>*@
 
 </body>
 </html>
