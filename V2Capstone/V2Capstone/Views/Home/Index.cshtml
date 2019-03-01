@@ -119,6 +119,30 @@
             font-family:Georgia, 'Times New Roman', Times, serif;
         }
 
+        figure.items {
+            /* To correctly align image, regardless of content height: */
+            vertical-align: top;
+            display: inline-block;
+            /* To horizontally center images and caption */
+            text-align: center;
+            /* The width of the container also implies margin around the images. */
+            width:500px;
+        }
+
+        img {
+            /*width: 50%;*/
+            height: 100px;
+            background-color: grey;
+        }
+
+        .captions {
+            /* Make the caption a block so it occupies its line. */
+            display: block;
+            font-family:Bahnschrift;
+            font-size: 30px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -130,26 +154,42 @@
     <div class="topnav">
         <a class="navtext" style="font-size:30px; padding:35px;" href="#Home">Home</a>
         <a class="navtext" style="font-size:30px; padding:35px;" href="#about">About</a>
-        <a class="navtext" style="font-size:30px; padding:35px;" href="Register">Register</a>
-        <a class="navtext" style="font-size:30px; padding:35px;" href="Login">Login</a>
+        <a class="navtext" style="font-size:30px; padding:35px;" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="navtext" style="font-size:30px; padding:35px;" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </div>
 
-    <div class="fullWidth">
-        
-    </div>
+    @*<div class="fullWidth"></div>*@
+
+    <figure class="items">
+        <img src="https://maxcdn.icons8.com/app/uploads/2016/10/Person_2.png" style="height:190px; margin-bottom:30px; background-color:transparent;" />
+        <figcaption class="captions">Grade analyitics</figcaption>
+    </figure>
+    <figure class="items">
+        <img src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Chat-2-512.png" style="height:170px; background-color:transparent;" />
+        <figcaption class="captions" style="padding-top:50px;">Easy to manage chat sytstem</figcaption>
+    </figure>
+    <figure class="items">
+        <img src="http://icons.iconarchive.com/icons/fps.hu/free-christmas-flat-circle/256/calendar-icon.png" style="height:190px; margin-bottom:10px; background-color:transparent;" />
+        <figcaption class="captions" style="padding-top:20px;">Viewable calendar</figcaption>
+    </figure>
+
+
+
+
+
 
     @*<div class="split left">
-        <div class="centered">
-            <p class="mystudent">
-                myStudent
-            </p>
-            <p style="font-family:Arial; font-size:20px; text-align: center;">
-                An easy accessible way to view what's going on in your classroom today.
-            </p>
-        </div>
-    </div>*@
+            <div class="centered">
+                <p class="mystudent">
+                    myStudent
+                </p>
+                <p style="font-family:Arial; font-size:20px; text-align: center;">
+                    An easy accessible way to view what's going on in your classroom today.
+                </p>
+            </div>
+        </div>*@
 
-        @*<form method="get">
+    @*<form method="get">
             <div style="margin-left: 200px; padding-top:170px;">
                 <button type="submit" class="open-button" asp-area="Identity" asp-page="/Account/Register">Register</button>
                 <div class="divider"></div>
