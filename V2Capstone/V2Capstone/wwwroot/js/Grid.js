@@ -1,16 +1,4 @@
-﻿//$(document).ready(function () {
-//    $('#getstudentdata').load("/TeacherModels/GetTeacherStudents");
-////})
-
-
-var url = "/TeacherModels/GetStudents";
-$.get(url, null, function (data) {
-    $("#getstudentdata").html(data);
-});
-
-
-
-    
+﻿
 
 
 $('#nav-button').on('mouseenter', () => {

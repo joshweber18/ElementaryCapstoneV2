@@ -177,6 +177,7 @@ namespace V2Capstone.Controllers
             return _context.Parent.Any(e => e.ParentId == id);
         }
 
+
         public async Task<IActionResult> CompleteGrade(string id)
         {
             AnalyticsViewModel viewModel = new AnalyticsViewModel();
@@ -215,6 +216,11 @@ namespace V2Capstone.Controllers
             var parent = _context.Parent.Where(p => p.Id == parentId).FirstOrDefault();
             viewModel.Students = _context.Student.Where(s => s.ParentId == parent.ParentId).ToList();
             return View(viewModel);
+        }
+
+        public string TestMethod()
+        {
+            return "Test String";
         }
     }
 }

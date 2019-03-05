@@ -125,6 +125,11 @@
             transition: margin-left .5s;
             padding: 16px;
         }
+
+        .spacer {
+            padding: 100px;
+        }
+
     </style>
 </head>
 <body style="background-color: #E5E4E2;">
@@ -184,6 +189,10 @@
             document.getElementById("main").style.marginLeft = "0";
         }
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="~/js/Grid.js"></script>
+
 </body>
 </html>
 
@@ -202,7 +211,21 @@
     </div>
 </div>
 
+<div class="spacer"></div>
+
+<div id="getparentstudents"></div>
+
+
+
+
+
 <script>
+
+    var url = "/ParentModels/ParentsChildrenList";
+    $.get(url, null, function (data) {
+        $('#getparentstudents').html(data);
+    });
+
 
         var nav = new DayPilot.Navigator("nav");
         nav.showMonths = 3;
