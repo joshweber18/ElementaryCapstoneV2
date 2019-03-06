@@ -3,10 +3,12 @@
 
 @{
     ViewData["Title"] = "Home Page";
+
 }
 
 <script src="~/js/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
 <link href="icons/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!DOCTYPE html>
 <html>
@@ -34,80 +36,7 @@
             padding: 4px 8px;
         }
 
-        .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-
-        .sidebar a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidebar a:hover {
-            color: #f1f1f1;
-        }
-
-
-        .sidebar .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-            color: white;
-        }
-
-        .openbtn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: white;
-            color: black;
-            padding: 10px 15px;
-            border: none;
-        }
-
-        .openbtn:hover {
-            background-color: #444;
-        }
-
-        .topnav {
-            background-color: #2B3856;
-            overflow: hidden;
-            padding: 10px;
-        }
-
-        .topnav a {
-            color: #f2f2f2;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 25px;
-        }
-
-        .topnav a.active {
-            color: white;
-            text-align: center;
-        }
-
-        .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
         .logoutbutton {
-            
             background-color: transparent;
             color: black;
             display: inline-block;
@@ -127,17 +56,43 @@
         }
 
         .spacer {
-            padding: 100px;
+            padding: 30px;
         }
+
+        /* Add a black background color to the top navigation */
+        .topnav {
+            background-color: #333;
+            overflow: hidden;
+            width: 100%;
+            top: 0px;
+            line-height: 40px;
+            position: fixed;
+            padding-top: 8px;
+            display: block;
+            left: 0;
+        }
+
+        .container2 {
+            width:80%;
+            margin: auto;
+            max-width: 1080px;
+        }
+
+
 
     </style>
 </head>
 <body style="background-color: #E5E4E2;">
-    @*<div class="topnav">
-            <a class="active"  asp-area="" asp-controller="Chat" asp-action="Index" style="color:white;">Chat</a>
-            <a class="active" asp-area="" asp-controller="ParentModels" asp-action="ParentsChildrenList" style="color:white;">Your Kids</a>
-        </div>*@
-    <h2 class="h2"> Welcome @Html.DisplayFor(model => model.parent.FirstName) @Html.DisplayFor(model => model.parent.LastName)!</h2>
+
+    <header class="topnav">
+        <div class="container2">
+            <a href="#getparentstudents" style="color:white; font-size:30px;">Kids</a>
+        </div>
+    </header>
+
+    <h2 class="h2" style="font-family:'Global User Interface'; font-size:70px;"> Welcome @Html.DisplayFor(model => model.parent.FirstName) @Html.DisplayFor(model => model.parent.LastName)!</h2>
+
+    <div class="spacer"></div>
 
     <form method="get" class="logoutbutton">
         <div class="row">
@@ -145,50 +100,42 @@
         </div>
     </form>
 
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <ul class="nav navbar-nav">
-            <li><a asp-area="" asp-controller="Chat" asp-action="Index" style="color:white;">Chat</a></li>
-            <li><a asp-area="" asp-controller="ParentModels" asp-action="ParentsChildrenList" style="color:white;">Your Kids</a></li>
-        </ul>
-    </div>
+    @*<div class="sidenav">
+            <a asp-area="" asp-controller="Chat" asp-action="Index" style="color:white;">Chat</a></a>
+        </div>*@
 
-    <div id="main">
-        <button class="openbtn" onclick="openNav()">☰</button>
-    </div>
-
-    <div class="row">
-        <div class="col-md-8"></div>
-        <div class="col-md-4" style="height:200px; padding:50px;">
-            <table class="table">
-                <tr>
-                    <td class="AlertHeader">
-                        @Html.DisplayNameFor(model => model.alert.Message)
-                    </td>
-                </tr>
-                @for (int i = 0; i < Model.Alerts.Count; i++)
-                {
+    @*<div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4" style="height:200px; padding:50px;">
+                <table class="table">
                     <tr>
-                        <td class="AlertResults">
-                            @Html.Raw(Model.Alerts[i].Message)
+                        <td class="AlertHeader">
+                            @Html.DisplayNameFor(model => model.alert.Message)
                         </td>
                     </tr>
-                }
-            </table>
-        </div>
-    </div>
+                    @for (int i = 0; i < Model.Alerts.Count; i++)
+                    {
+                        <tr>
+                            <td class="AlertResults">
+                                @Html.Raw(Model.Alerts[i].Message)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>*@
 
-    <script>
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
+    @*<script>
+            function openNav() {
+                document.getElementById("mySidebar").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
 
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
-    </script>
+            function closeNav() {
+                document.getElementById("mySidebar").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        </script>*@
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="~/js/Grid.js"></script>
@@ -227,176 +174,177 @@
     });
 
 
-        var nav = new DayPilot.Navigator("nav");
-        nav.showMonths = 3;
-        nav.skipMonths = 3;
-        nav.selectMode = "month";
-        nav.onTimeRangeSelected = function (args) {
-            dp.startDate = args.day;
-            dp.update();
-            dp.events.load("/api/events");
-        };
-        nav.init();
-
-
-        var dp = new DayPilot.Month("dp");
-        dp.onTimeRangeSelected = function (args) {
-            DayPilot.Modal.prompt("Create a new event:", "Event").then(function (modal) {
-                var dp = args.control;
-                dp.clearSelection();
-                if (!modal.result) {
-                    return;
-                }
-                var params = {
-                    start: args.start.toString(),
-                    end: args.end.toString(),
-                    text: modal.result,
-                    resource: args.resource
-                };
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/events',
-                    data: JSON.stringify(params),
-                    success: function (data) {
-                        dp.events.add(new DayPilot.Event(data));
-                        dp.message("Event created");
-                    },
-                    contentType: "application/json",
-                    dataType: 'json'
-                });
-            });
-        };
-        dp.onEventMove = function (args) {
-            var params = {
-                id: args.e.id(),
-                start: args.newStart.toString(),
-                end: args.newEnd.toString()
-            };
-            $.ajax({
-                type: 'PUT',
-                url: '/api/events/' + args.e.id() + "/move",
-                data: JSON.stringify(params),
-                success: function (data) {
-                    dp.message("Event moved");
-                },
-                contentType: "application/json",
-                dataType: 'json'
-            });
-        };
-        dp.onEventResize = function (args) {
-            var params = {
-                id: args.e.id(),
-                start: args.newStart.toString(),
-                end: args.newEnd.toString()
-            };
-            $.ajax({
-                type: 'PUT',
-                url: '/api/events/' + args.e.id() + "/move",
-                data: JSON.stringify(params),
-                success: function (data) {
-                    dp.message("Event resized");
-                },
-                contentType: "application/json",
-                dataType: 'json'
-            });
-        };
-        dp.onBeforeEventRender = function (args) {
-            args.data.backColor = args.data.color;
-            args.data.areas = [
-                { top: 3, right: 3, bottom: 3, icon: "icon-triangle-down", visibility: "Hover", action: "ContextMenu", style: "font-size: 12px; background-color: rgba(255, 255, 255, .5); border: 1px solid #aaa; padding: 3px; cursor:pointer;" }
-            ];
-        };
-        dp.contextMenu = new DayPilot.Menu({
-            items: [
-                {
-                    text: "Delete",
-                    onClick: function (args) {
-                        var e = args.source;
-                        $.ajax({
-                            type: 'DELETE',
-                            url: '/api/events/' + e.id(),
-                            success: function (data) {
-                                dp.events.remove(e);
-                                dp.message("Event deleted");
-                            },
-                            contentType: "application/json",
-                            dataType: 'json'
-                        });
-                    }
-                },
-                {
-                    text: "-"
-                },
-                {
-                    text: "Blue",
-                    icon: "icon icon-blue",
-                    color: "#a2c4c9",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-                {
-                    text: "Green",
-                    icon: "icon icon-green",
-                    color: "#b6d7a8",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-                {
-                    text: "Yellow",
-                    icon: "icon icon-yellow",
-                    color: "#ffe599",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-                {
-                    text: "Red",
-                    icon: "icon icon-red",
-                    color: "#ea9999",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-                {
-                    text: "Auto",
-                    color: "auto",
-                    onClick: function (args) { updateColor(args.source, args.item.color); }
-                },
-            ]
-        });
-        dp.init();
-
+    var nav = new DayPilot.Navigator("nav");
+    nav.showMonths = 3;
+    nav.skipMonths = 3;
+    nav.selectMode = "month";
+    nav.onTimeRangeSelected = function (args) {
+        dp.startDate = args.day;
+        dp.update();
         dp.events.load("/api/events");
+    };
+    nav.init();
 
 
-        function updateColor(e, color) {
+    var dp = new DayPilot.Month("dp");
+    dp.onTimeRangeSelected = function (args) {
+        DayPilot.Modal.prompt("Create a new event:", "Event").then(function (modal) {
+            var dp = args.control;
+            dp.clearSelection();
+            if (!modal.result) {
+                return;
+            }
             var params = {
-                color: color
+                start: args.start.toString(),
+                end: args.end.toString(),
+                text: modal.result,
+                resource: args.resource
             };
             $.ajax({
-                type: 'PUT',
-                url: '/api/events/' + e.id() + '/color',
+                type: 'POST',
+                url: '/api/events',
                 data: JSON.stringify(params),
                 success: function (data) {
-                    e.data.color = color;
-                    dp.events.update(e);
-                    dp.message("Color updated");
+                    dp.events.add(new DayPilot.Event(data));
+                    dp.message("Event created");
                 },
                 contentType: "application/json",
                 dataType: 'json'
             });
-        }
-
-        $(document).ready(function () {
-
-            $("#previous").click(function () {
-                nav.select(nav.selectionDay.addMonths(-1));
-            });
-
-            $("#today").click(function () {
-                nav.select(DayPilot.Date.today());
-            });
-
-            $("#next").click(function () {
-                nav.select(nav.selectionDay.addMonths(1));
-            });
-
         });
+    };
+    dp.onEventMove = function (args) {
+        var params = {
+            id: args.e.id(),
+            start: args.newStart.toString(),
+            end: args.newEnd.toString()
+        };
+        $.ajax({
+            type: 'PUT',
+            url: '/api/events/' + args.e.id() + "/move",
+            data: JSON.stringify(params),
+            success: function (data) {
+                dp.message("Event moved");
+            },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    };
+    dp.onEventResize = function (args) {
+        var params = {
+            id: args.e.id(),
+            start: args.newStart.toString(),
+            end: args.newEnd.toString()
+        };
+        $.ajax({
+            type: 'PUT',
+            url: '/api/events/' + args.e.id() + "/move",
+            data: JSON.stringify(params),
+            success: function (data) {
+                dp.message("Event resized");
+            },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    };
+    dp.onBeforeEventRender = function (args) {
+        args.data.backColor = args.data.color;
+        args.data.areas = [
+            { top: 3, right: 3, bottom: 3, icon: "icon-triangle-down", visibility: "Hover", action: "ContextMenu", style: "font-size: 12px; background-color: rgba(255, 255, 255, .5); border: 1px solid #aaa; padding: 3px; cursor:pointer;" }
+        ];
+    };
+    dp.contextMenu = new DayPilot.Menu({
+        items: [
+            {
+                text: "Delete",
+                onClick: function (args) {
+                    var e = args.source;
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/api/events/' + e.id(),
+                        success: function (data) {
+                            dp.events.remove(e);
+                            dp.message("Event deleted");
+                        },
+                        contentType: "application/json",
+                        dataType: 'json'
+                    });
+                }
+            },
+            {
+                text: "-"
+            },
+            {
+                text: "Blue",
+                icon: "icon icon-blue",
+                color: "#a2c4c9",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Green",
+                icon: "icon icon-green",
+                color: "#b6d7a8",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Yellow",
+                icon: "icon icon-yellow",
+                color: "#ffe599",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Red",
+                icon: "icon icon-red",
+                color: "#ea9999",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Auto",
+                color: "auto",
+                onClick: function (args) { updateColor(args.source, args.item.color); }
+            },
+        ]
+    });
+    dp.init();
+
+    dp.events.load("/api/events");
+
+
+    function updateColor(e, color) {
+        var params = {
+            color: color
+        };
+        $.ajax({
+            type: 'PUT',
+            url: '/api/events/' + e.id() + '/color',
+            data: JSON.stringify(params),
+            success: function (data) {
+                e.data.color = color;
+                dp.events.update(e);
+                dp.message("Color updated");
+            },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    }
+
+    $(document).ready(function () {
+
+        $("#previous").click(function () {
+            nav.select(nav.selectionDay.addMonths(-1));
+        });
+
+        $("#today").click(function () {
+            nav.select(DayPilot.Date.today());
+        });
+
+        $("#next").click(function () {
+            nav.select(nav.selectionDay.addMonths(1));
+        });
+
+    });
 
 </script>
 
 
+@*<a asp-area="" asp-controller="Chat" asp-action="Index" style="color:white; font-size:30px;">Chat</a>*@

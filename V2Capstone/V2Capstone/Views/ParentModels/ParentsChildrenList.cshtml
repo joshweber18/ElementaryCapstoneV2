@@ -2,10 +2,18 @@
 @model V2Capstone.Models.AnalyticsViewModel
 
 @{
-    ViewData["Title"] = "ParentsChildrenList";
     Layout = null;
-
 }
+
+<style>
+    .spacer {
+        padding: 100px;
+    }
+
+
+</style>
+
+
 
 <html>
 <head>
@@ -42,7 +50,6 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.GradeLevel)
                     </td>
-                    @*<td id="studentid">@Html.HiddenFor(modelItem => item.Id)</td>*@
                     <td>
                         <button type="button" id="btn" value="@item.Id">Select</button>
                     </td>
@@ -50,6 +57,7 @@
             }
         </tbody>
     </table>
+    <div class="spacer"></div>
 
     <div id="grades"></div>
 
@@ -63,7 +71,6 @@
         $(document).ready(function () {
             $("#btn").click(function () {
                 var selectedid = $(this).val();
-                alert(selectedid);
                 $.ajax({
                     type: 'GET',
                     data: { "id": selectedid },
