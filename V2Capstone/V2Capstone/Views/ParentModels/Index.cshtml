@@ -50,13 +50,8 @@
             right: 16px;
         }
 
-        #main {
-            transition: margin-left .5s;
-            padding: 16px;
-        }
-
         .spacer {
-            padding: 30px;
+            padding-bottom:10px;
         }
 
         /* Add a black background color to the top navigation */
@@ -64,29 +59,39 @@
             background-color: #333;
             overflow: hidden;
             width: 100%;
-            top: 0px;
             line-height: 40px;
+            position: absolute;
             position: fixed;
-            padding-top: 8px;
+            padding-top: 10px;
             display: block;
             left: 0;
+            right: 0;
+            top: 0;
+            z-index: 1;
         }
 
         .container2 {
-            width:80%;
+            width: 70%;
             margin: auto;
             max-width: 1080px;
         }
 
-
+        .mystudent {
+            font-family: SimSun;
+            font-size: 30px;
+            display: inline-block;
+        }
 
     </style>
 </head>
 <body style="background-color: #E5E4E2;">
 
-    <header class="topnav">
+    <header class="topnav" style="top:0px;">
         <div class="container2">
-            <a href="#getparentstudents" style="color:white; font-size:30px;">Kids</a>
+            <p class="mystudent" style="color:#BDD3DE">my</p>
+            <p class="mystudent" style="color:#BDD3DE; padding-right:100px;">Student</p>
+            <a asp-area="" asp-controller="Home" asp-action="Index" style="color:#BDD3DE; font-size:30px; float:right;">Logout</a>
+            <a href="#getparentstudents" style="color:#BDD3DE; font-size:30px; padding-right:50px; float:right;">Kids</a>
         </div>
     </header>
 
@@ -94,15 +99,30 @@
 
     <div class="spacer"></div>
 
-    <form method="get" class="logoutbutton">
-        <div class="row">
-            <button type="submit" class="open-button" asp-area="" asp-action="Index" asp-controller="Home">Logout</button>
+    <div class="main">
+        <div style="float:left; width: 150px;">
+            <div id="nav"></div>
         </div>
-    </form>
+        <div style="margin-left: 150px;">
+            <div class="navi">
+                <button id="previous">&laquo;</button>
+                <button id="today">Today</button>
+                <button id="next">&raquo;</button>
+            </div>
+            <div id="dp"></div>
+        </div>
+    </div>
 
-    @*<div class="sidenav">
-            <a asp-area="" asp-controller="Chat" asp-action="Index" style="color:white;">Chat</a></a>
-        </div>*@
+    <div class="spacer"></div>
+
+    <div id="getparentstudents"></div>
+
+
+    @*<form method="get" class="logoutbutton">
+            <div class="row">
+                <button type="submit" class="open-button" asp-area="" asp-action="Index" asp-controller="Home">Logout</button>
+            </div>
+        </form>*@
 
     @*<div class="row">
             <div class="col-md-8"></div>
@@ -125,43 +145,12 @@
             </div>
         </div>*@
 
-    @*<script>
-            function openNav() {
-                document.getElementById("mySidebar").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            }
-
-            function closeNav() {
-                document.getElementById("mySidebar").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-            }
-        </script>*@
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="~/js/Grid.js"></script>
 
 </body>
 </html>
-
-
-<div class="main">
-    <div style="float:left; width: 150px;">
-        <div id="nav"></div>
-    </div>
-    <div style="margin-left: 150px;">
-        <div class="navi">
-            <button id="previous">&laquo;</button>
-            <button id="today">Today</button>
-            <button id="next">&raquo;</button>
-        </div>
-        <div id="dp"></div>
-    </div>
-</div>
-
-<div class="spacer"></div>
-
-<div id="getparentstudents"></div>
-
 
 
 
