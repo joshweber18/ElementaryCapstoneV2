@@ -1,4 +1,5 @@
-﻿
+﻿@model V2Capstone.Models.AnalyticsViewModel
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -17,127 +18,74 @@
             font-family: "Lato", sans-serif;
         }
 
-        .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-
-            .sidebar a {
-                padding: 8px 8px 8px 32px;
-                text-decoration: none;
-                font-size: 25px;
-                color: #818181;
-                display: block;
-                transition: 0.3s;
-            }
-
-                .sidebar a:hover {
-                    color: #f1f1f1;
-                }
-
-
-            .sidebar .closebtn {
-                position: absolute;
-                top: 0;
-                right: 25px;
-                font-size: 36px;
-                margin-left: 50px;
-                color: white;
-            }
-
-        .openbtn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: white;
-            color: black;
-            padding: 10px 15px;
-            border: none;
-        }
-
-            .openbtn:hover {
-                background-color: #444;
-            }
-
-        .logoutbutton {
-            background-color: transparent;
-            color: black;
-            display: inline-block;
-            position: relative;
-            padding: 16px 20px;
-            cursor: pointer;
-            opacity: 0.8;
-            margin: 0 auto;
-            width: 14.615861214%;
-            position: absolute;
-            right: 16px;
-        }
-
-        #main {
-            transition: margin-left .5s;
-            padding: 16px;
-        }
-
         ul.nav.nav-tabs {
             margin: 10px 0px;
         }
 
-        ul.nav.nav-tabs li:not(.active) a {
-            background-color: #eeeeee;
-            color: grey;
-        }
+            ul.nav.nav-tabs li:not(.active) a {
+                background-color: #eeeeee;
+                color: grey;
+            }
 
-        ul.nav.nav-tabs li.active a {
-            border-top: 3px solid #16a765;
-        }
+            ul.nav.nav-tabs li.active a {
+                border-top: 3px solid #16a765;
+            }
 
         .space {
             padding: 50px;
+        }
+
+        /* Add a black background color to the top navigation */
+        .topnav {
+            background-color: #333;
+            overflow: hidden;
+            width: 100%;
+            line-height: 40px;
+            position: absolute;
+            position: fixed;
+            padding-top: 10px;
+            display: block;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+
+        .container2 {
+            width: 80%;
+            margin: auto;
+            max-width: 1080px;
+        }
+
+        .mystudent {
+            font-family: SimSun;
+            font-size: 30px;
+            display: inline-block;
+        }
+
+        h2 {
+            text-align: center;
         }
 
     </style>
 </head>
 <body style="background-color: #FFFFFF;">
 
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <ul class="nav navbar-nav">
-            <li><a asp-area="" asp-controller="Chat" asp-action="Index" id="nav-button" style="color:white;">Chat</a></li>
-            <li><a asp-area="" asp-controller="GradeGrid" asp-action="Index" style="color:white;">Grades</a></li>
-            <li><a asp-area="Identity" asp-page="/SendEnvelope" style="color:white;">Send Document</a></li>
-            <li><a asp-area="" asp-controller="TeacherModels" asp-action="ChosenParents" style="color:white;">Send Alert</a></li>
-            <li><a asp-area="" asp-controller="CustomGrid" asp-action="Index" style="color:white;">My Grid</a></li>
-        </ul>
-    </div>
-
-    <form method="get" class="logoutbutton">
-        <div class="row">
-            <button type="submit" class="open-button" asp-area="" asp-action="Index" asp-controller="Home">Logout</button>
+    <header class="topnav" style="top:0px;">
+        <div class="container2">
+            <p class="mystudent" style="color:#BDD3DE">my</p>
+            <p class="mystudent" style="color:#BDD3DE; padding-right:100px;">Student</p>
+            <a asp-area="" asp-controller="Chat" asp-action="Index" id="nav-button" style="color:#BDD3DE; padding:10px; font-size:20px;">Chat</a>
+            <a asp-area="Identity" asp-page="/SendEnvelope" style="color:#BDD3DE; padding:10px; font-size:20px;">Send Document</a>
+            <a asp-area="" asp-controller="TeacherModels" asp-action="ChosenParents" style="color:#BDD3DE; padding:10px; font-size:20px;">Send Alert</a>
+            <a asp-area="" asp-controller="CustomGrid" asp-action="Index" style="color:#BDD3DE; padding:10px; font-size:20px;">My Grid</a>
+            <a asp-area="" asp-controller="Home" asp-action="Index" style="color:#BDD3DE; padding:10px; font-size:20px;">Logout</a>
         </div>
-    </form>
+    </header>
 
-    <div id="main">
-        <button class="openbtn" onclick="openNav()">☰</button>
-    </div>
+    <h2 class="h2" style="font-family:'Global User Interface'; font-size:70px; padding-bottom:30px;"> Welcome @Html.DisplayFor(model => model.teacher.FirstName) @Html.DisplayFor(model => model.teacher.LastName)!</h2>
 
-    <script>
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
-    </script>
+    <div class="space"></div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="~/js/Grid.js" asp-append-version="true"></script>
@@ -179,7 +127,7 @@
 
 
 <script>
-    var url = "/TeacherModels/GetStudents";
+    var url = "/GradeGrid/Index";
     $.get(url, null, function (data) {
         $("#getstudentdata").html(data);
     });

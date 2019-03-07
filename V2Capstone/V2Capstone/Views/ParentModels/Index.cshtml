@@ -36,20 +36,6 @@
             padding: 4px 8px;
         }
 
-        .logoutbutton {
-            background-color: transparent;
-            color: black;
-            display: inline-block;
-            position: relative;
-            padding: 16px 20px;
-            cursor: pointer;
-            opacity: 0.8;
-            margin: 0 auto;
-            width: 14.615861214%;
-            position: absolute;
-            right: 16px;
-        }
-
         .spacer {
             padding-bottom:10px;
         }
@@ -95,9 +81,7 @@
         </div>
     </header>
 
-    <h2 class="h2" style="font-family:'Global User Interface'; font-size:70px;"> Welcome @Html.DisplayFor(model => model.parent.FirstName) @Html.DisplayFor(model => model.parent.LastName)!</h2>
-
-    <div class="spacer"></div>
+    <h2 class="h2" style="font-family:'Global User Interface'; font-size:70px; padding-bottom:30px;"> Welcome @Html.DisplayFor(model => model.parent.FirstName) @Html.DisplayFor(model => model.parent.LastName)!</h2>
 
     <div class="main">
         <div style="float:left; width: 150px;">

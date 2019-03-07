@@ -22,10 +22,15 @@ namespace V2Capstone.Controllers
         }
 
         // GET: TeacherModels
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Teacher.Include(t => t.User);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Teacher.Include(t => t.User);
+            //return View(await applicationDbContext.ToListAsync());
+            AnalyticsViewModel viewModel = new AnalyticsViewModel();
+            string teacherId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            viewModel.teacher = _context.Teacher.Where(p => p.Id == teacherId).Single();
+            var applicationDbContext = _context.Teacher.Include(p => p.User);
+            return View(viewModel);
         }
 
         // GET: TeacherModels/Details/5
